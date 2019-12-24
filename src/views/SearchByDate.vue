@@ -1,6 +1,6 @@
 <template>
-  <div class="home">
-    <h1>Search</h1>
+  <div class="search-by-date">
+    <h1>Search by date</h1>
     <NewsSearch />
     <h2 v-if="isError">Something went wrong, please try again!</h2>
     <h2 v-else-if="isLoading">Loading...</h2>
@@ -12,7 +12,7 @@
 import { mapState } from "vuex";
 
 export default {
-  name: "home",
+  name: "search-by-date",
   components: {
     NewsList: () =>
       import(/* webpackPrefetch: true */ "@/components/NewsList.vue"),
