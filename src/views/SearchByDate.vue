@@ -4,7 +4,7 @@
     <NewsSearch />
     <h2 v-if="isError">Something went wrong, please try again!</h2>
     <h2 v-else-if="isLoading">Loading...</h2>
-    <NewsList v-else :news="news" />
+    <NewsList v-else :news="news" :lastPage="lastPage" />
   </div>
 </template>
 
@@ -19,15 +19,10 @@ export default {
     NewsSearch: () =>
       import(/* webpackPrefetch: true */ "@/components/NewsSearch.vue")
   },
-  data: () => ({
-    currentPage: 1
-  }),
-  computed: mapState(["news", "isError", "isLoading"]),
+  computed: mapState(["news", "lastPage", "isError", "isLoading"]),
   beforeRouteEnter(to, from, next) {
     next(async vm => {
-      vm.$store.dispatch("FETCH_NEWS_LIST", {
-        page: vm.currentPage
-      });
+      vm.$store.dispatch("FETCH_NEWS_LIST", {});
     });
   }
 };

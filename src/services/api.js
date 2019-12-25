@@ -22,12 +22,11 @@ axios.interceptors.request.use(
   }
 );
 
-export const fetchNews = async (query, page, date) => {
+export const fetchNews = async (query = "", page = 1, date) => {
   let news = [];
+  let lastPage = 0;
   let isError = false;
   let isLoading = true;
-
-  query = query ? query : "";
 
   let url = date
     ? `${NEWS_URL}/search_by_date?query=${query}&page=${page}&numericFilters=created_at_i>${date}`
@@ -36,6 +35,7 @@ export const fetchNews = async (query, page, date) => {
   try {
     const response = await axios.get(url);
     news = response.data.hits;
+    lastPage = response.data.nbPages - 1;
   } catch (error) {
     if (axios.isCancel(error)) {
       // set flag to handle request canceling seperately
@@ -48,5 +48,5 @@ export const fetchNews = async (query, page, date) => {
     isLoading = false;
   }
 
-  return { news, isError, isLoading };
+  return { news, lastPage, isError, isLoading };
 };
