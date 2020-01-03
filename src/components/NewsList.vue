@@ -2,27 +2,46 @@
   <div class="news-list">
     <h3 v-if="news.length === 0">No news!</h3>
     <div v-else>
-      <Pagination :range="3" :lastPage="lastPage" />
-      <ul>
-        <li v-for="item in news" :key="item.objectID">
-          <span v-if="item.url">
-            <a :href="item.url" target="_blank" rel="noopener">
-              {{ item.title }}
-            </a>
-          </span>
-          <span v-else>
-            <a :href="item.story_url" target="_blank" rel="noopener">
-              {{ item.story_title }}
-            </a>
-          </span>
-          <br />
-          <span v-if="item.points">{{ item.points }} points </span>
-          <span v-if="item.author">by {{ item.author }} </span>
-          <span v-if="item.created_at">
-            created at {{ item.created_at | formatDate }}
-          </span>
-        </li>
-      </ul>
+      <v-container class="my-2">
+        <Pagination :range="3" :lastPage="lastPage" />
+      </v-container>
+      <v-card class="mx-auto" max-width="400" tile>
+        <template v-for="(item, index) in news">
+          <v-list-item
+            link
+            two-line
+            :href="item.url"
+            target="_blank"
+            :key="item.objectID"
+          >
+            <v-list-item-content>
+              <v-list-item-title>
+                <span v-if="item.url">
+                  <a :href="item.url" target="_blank" rel="noopener">
+                    {{ item.title }}
+                  </a>
+                </span>
+                <span v-else>
+                  <a :href="item.story_url" target="_blank" rel="noopener">
+                    {{ item.story_title }}
+                  </a>
+                </span>
+              </v-list-item-title>
+              <v-list-item-subtitle>
+                <span v-if="item.points">{{ item.points }} points </span>
+                <span v-if="item.author">by {{ item.author }} </span>
+                <span v-if="item.created_at">
+                  created at {{ item.created_at | formatDate }}
+                </span>
+              </v-list-item-subtitle>
+            </v-list-item-content>
+          </v-list-item>
+          <v-divider v-if="index + 1 < news.length" :key="index"></v-divider>
+        </template>
+      </v-card>
+      <v-container class="my-2">
+        <Pagination :range="3" :lastPage="lastPage" />
+      </v-container>
     </div>
   </div>
 </template>

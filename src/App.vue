@@ -1,9 +1,11 @@
 <template>
   <div id="app">
-    <TheHeader />
-    <div id="page-container">
-      <router-view />
-    </div>
+    <v-app>
+      <TheHeader />
+      <v-content>
+        <router-view />
+      </v-content>
+    </v-app>
   </div>
 </template>
 
@@ -24,10 +26,5 @@ export default {
   -moz-osx-font-smoothing: grayscale;
   text-align: center;
   color: #2c3e50;
-}
-
-#page-container {
-  max-width: 600px;
-  margin: auto;
 }
 </style>

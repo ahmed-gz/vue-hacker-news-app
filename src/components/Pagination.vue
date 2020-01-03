@@ -1,40 +1,56 @@
 <template>
   <div class="pagination">
-    <button type="button" :disabled="currentPage === 1" @click="onPaginate(1)">
-      First
-    </button>
-    <button
-      type="button"
+    <v-btn
+      fab
+      color="blue darken-1"
+      class="mx-1"
+      :disabled="currentPage === 1"
+      @click="onPaginate(1)"
+    >
+      <v-icon>mdi-chevron-left</v-icon>
+      <v-icon>mdi-chevron-left</v-icon>
+    </v-btn>
+    <v-btn
+      fab
+      color="blue darken-1"
+      class="mx-1"
       :disabled="currentPage === 1"
       @click="onPaginate(currentPage - 1)"
     >
-      &laquo;
-    </button>
+      <v-icon>mdi-chevron-left</v-icon>
+    </v-btn>
     <span v-if="currentPage - 1 > range">...</span>
-    <button
-      type="button"
+    <v-btn
+      fab
+      color="blue lighten-1"
+      class="mx-1"
       v-for="n in pages"
       :key="n"
       :disabled="n === currentPage"
       @click="onPaginate(n)"
     >
       {{ n }}
-    </button>
+    </v-btn>
     <span v-if="lastPage - currentPage > range">...</span>
-    <button
-      type="button"
+    <v-btn
+      fab
+      color="blue darken-1"
+      class="mx-1"
       :disabled="currentPage === lastPage"
       @click="onPaginate(currentPage + 1)"
     >
-      &raquo;
-    </button>
-    <button
-      type="button"
+      <v-icon>mdi-chevron-right</v-icon>
+    </v-btn>
+    <v-btn
+      fab
+      color="blue darken-1"
+      class="mx-1"
       :disabled="currentPage === lastPage"
       @click="onPaginate(lastPage)"
     >
-      Last
-    </button>
+      <v-icon>mdi-chevron-right</v-icon>
+      <v-icon>mdi-chevron-right</v-icon>
+    </v-btn>
   </div>
 </template>
 
@@ -69,6 +85,7 @@ export default {
   },
   methods: {
     onPaginate: debounce(function(page) {
+      // TODO: make this action a callback to parent to make this dumb
       this.$store.dispatch("FETCH_NEWS_LIST", {
         page: page
       });

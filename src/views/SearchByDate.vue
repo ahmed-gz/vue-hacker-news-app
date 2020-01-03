@@ -1,10 +1,20 @@
 <template>
   <div class="search-by-date">
-    <h1>Search by date</h1>
-    <NewsSearch />
-    <h2 v-if="isError">Something went wrong, please try again!</h2>
-    <h2 v-else-if="isLoading">Loading...</h2>
-    <NewsList v-else :news="news" :lastPage="lastPage" />
+    <v-container>
+      <h1>Search by date</h1>
+      <NewsSearch />
+      <v-alert v-if="isError" class="my-5 mx-auto" width="500px" type="error">
+        Something went wrong, please try again!
+      </v-alert>
+      <v-progress-circular
+        v-else-if="isLoading"
+        :size="50"
+        class="my-5"
+        color="primary"
+        indeterminate
+      ></v-progress-circular>
+      <NewsList v-else :news="news" :lastPage="lastPage" />
+    </v-container>
   </div>
 </template>
 

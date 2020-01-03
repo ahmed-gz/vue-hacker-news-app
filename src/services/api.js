@@ -29,8 +29,8 @@ export const fetchNews = async (query = "", page = 1, date) => {
   let isLoading = true;
 
   let url = date
-    ? `${NEWS_URL}/search_by_date?query=${query}&page=${page}&numericFilters=created_at_i>${date}`
-    : `${NEWS_URL}/search?query=${query}&page=${page}`;
+    ? `${NEWS_URL}search_by_date?query=${query}&page=${page}&numericFilters=created_at_i>${date}`
+    : `${NEWS_URL}search?query=${query}&page=${page}`;
 
   try {
     const response = await axios.get(url);
