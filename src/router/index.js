@@ -30,6 +30,7 @@ const router = new VueRouter({
 
 router.beforeEach((to, from, next) => {
   store.dispatch("CANCEL_PENDING_REQUESTS");
+  store.dispatch("RESET_SEARCH_FIELDS");
   next();
 });
 

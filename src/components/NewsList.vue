@@ -2,7 +2,7 @@
   <div class="news-list">
     <h3 v-if="news.length === 0">No news!</h3>
     <div v-else>
-      <Pagination :range="5" :lastPage="lastPage" />
+      <Pagination :range="3" :lastPage="lastPage" />
       <ul>
         <li v-for="item in news" :key="item.objectID">
           <span v-if="item.url">

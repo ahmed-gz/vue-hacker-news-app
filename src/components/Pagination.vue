@@ -1,5 +1,8 @@
 <template>
   <div class="pagination">
+    <button type="button" :disabled="currentPage === 1" @click="onPaginate(1)">
+      First
+    </button>
     <button
       type="button"
       :disabled="currentPage === 1"
@@ -24,6 +27,13 @@
       @click="onPaginate(currentPage + 1)"
     >
       &raquo;
+    </button>
+    <button
+      type="button"
+      :disabled="currentPage === lastPage"
+      @click="onPaginate(lastPage)"
+    >
+      Last
     </button>
   </div>
 </template>
