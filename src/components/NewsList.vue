@@ -5,7 +5,7 @@
       <v-container class="my-2">
         <Pagination :range="3" :lastPage="lastPage" />
       </v-container>
-      <v-card class="mx-auto" max-width="400" tile>
+      <v-card class="mx-auto" max-width="800" tile>
         <template v-for="(item, index) in news">
           <v-list-item
             link
