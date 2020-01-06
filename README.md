@@ -1,5 +1,7 @@
 # vue-hacker-news-app
 
+Simple experimenting HackerNews app built with Vue, Vue CLI, vue-router, vuex, vuetify and axios.
+
 ## Project setup
 ```
 yarn install
