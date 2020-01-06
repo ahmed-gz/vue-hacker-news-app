@@ -1,7 +1,6 @@
 import axios from "axios";
 import store from "../store";
-
-const NEWS_URL = "https://hn.algolia.com/api/v1/";
+import { NEWS_URL } from "@/util/config";
 
 // Cancel Token Request Interceptor
 axios.interceptors.request.use(
